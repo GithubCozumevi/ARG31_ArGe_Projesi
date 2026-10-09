@@ -19,7 +19,6 @@ bu akışı gerçek fişlerde **ölçen betikler**, fişlerde **alan konumunu (l
 9. [Bilinen sınırlar](#9-bilinen-sınırlar)
 10. [Güvenlik ve veri](#10-güvenlik-ve-veri)
 11. [Geliştirme notları ve yol haritası](#11-geliştirme-notları-ve-yol-haritası)
-12. [Değişiklik geçmişi](#12-değişiklik-geçmişi)
 
 ---
 
@@ -371,17 +370,3 @@ Planlanan işler:
 - Fotoğraf fişleri için ön işleme (kırpma, döndürme, EXIF yönü) ve bbox tabanlı alan modeli (LiLT / LayoutXLM, Colab'da eğitim).
 - Etiket temizliği ve firma adı standardı (marka / unvan kuralı).
 - Kod kalitesi aracı (ruff) ve CI'da testlerin otomatik çalışması.
-
-## 12. Değişiklik geçmişi
-
-**9 Ekim 2026 — clean code düzenlemesi**
-
-- Kök dizindeki betikler `scripts/` paketine taşındı (`olcum`, `veri_denetim`, `arac`, `layout`); `olcum_ortak.py` → `scripts/ortak.py`. Çalıştırma artık `python -m scripts.<grup>.<betik>`.
-- Gold klasörü okuma, kayma çözümü ve çıktı yolu ortak yardımcılara taşındı; `vkn_olc` fonksiyonlara bölündü. Eski ve yeni betik çıktıları aynı sentetik veriyle birebir karşılaştırıldı (tek fark aşağıdaki TCKN değişikliği).
-- Servis: `/storage/list` alt klasörleri listeler; `/storage/url/...` alt klasörlü adlarla çalışır; bucket `MINIO_BUCKET` ile ayarlanır; yükleme dosya adı / uzantı denetler, aynı ada `409` döner; iç hata ayrıntıları istemciye gitmez.
-- Servis: MinIO istemcisi ve MLflow ilk kullanımda kurulur; satıcı sözlüğü `SozlukDeposu` ile ilk istekte yüklenir; `/extract/vkn` MLflow logunu arka planda yazar. **Yanıt değişikliği:** `mlflow_loglandi` / `mlflow_hata` alanları yerine `mlflow_log` (`kuyruga_alindi` / `kapali`).
-- `pipeline.vkn_karar_ver` basamak fonksiyonlarına bölündü, `Kaynak` ve `Guven` sabitleri eklendi (sonuç değerleri aynı).
-- **Davranış değişikliği:** Üretim satıcı sözlüğü artık geçerli TCKN'li (şahıs) satıcıları da içerir; ölçüm betikleri zaten böyle çalışıyordu, ikisi tutarlı hale geldi.
-- `hizalama_kontrol` `--kayma` destekler; `tarih_bicim` artık gereksiz yere `vkn_olc`'u içe aktarmaz.
-- `tests/`: 26 → 86 test (API uçları, ortak yardımcılar, firma ölçüsü, sözlük, layout fonksiyonları).
-- Layout betikleri (`ocr_bbox_kaydet`, `konum_gercek`, `layout_pilot`, `gorsel_etiket_eslestir`) projeye eklendi.
