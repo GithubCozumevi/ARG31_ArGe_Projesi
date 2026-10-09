@@ -1,0 +1,57 @@
+kategori,urun_adi,birim
+ulasim_hizmeti,Nakliye Ücreti,Ton
+ulasim_hizmeti,Kargo Hizmeti,Adet
+ulasim_hizmeti,Yurtiçi Kargo Gönderimi,Adet
+ulasim_hizmeti,Yurtdışı Kargo Bedeli,Adet
+ulasim_hizmeti,Kurye Hizmeti,Adet
+ulasim_hizmeti,Parsiyel Taşımacılık,Ton
+ulasim_hizmeti,Komple Araç Tahsisi,Adet
+ulasim_hizmeti,Konteyner Taşıma Bedeli,Adet
+ulasim_hizmeti,Gümrük Nakliye Bedeli,Adet
+ulasim_hizmeti,Depolama ve Antrepo Hizmeti,Ay
+ulasim_hizmeti,Lojistik Organizasyon Bedeli,Adet
+ulasim_hizmeti,İade Kargo Bedeli,Adet
+ulasim_hizmeti,Ağır Vasıta Taşıma,Ton
+ulasim_hizmeti,Soğuk Zincir Taşımacılık,Km
+ulasim_hizmeti,Şehir İçi Dağıtım Bedeli,Adet
+ulasim_hizmeti,Palet Taşıma Bedeli,Adet
+ulasim_hizmeti,Yükleme/Boşaltma Hizmeti,Saat
+ulasim_hizmeti,Ekspres Kurye,Adet
+ulasim_hizmeti,Gümrüklü Antrepo Bedeli,Ay
+ulasim_hizmeti,Kargo Sigorta Primi,Adet
+ulasim_hizmeti,Transit Taşıma Ücreti,Km
+ulasim_bireysel,Taksi Ücreti,Adet
+ulasim_bireysel,Uçak Bileti,Adet
+ulasim_bireysel,Yurtiçi Uçuş Bileti,Adet
+ulasim_bireysel,Yurtdışı Uçuş Bileti,Adet
+ulasim_bireysel,Otopark Ücreti,Saat
+ulasim_bireysel,Vale Hizmeti,Adet
+ulasim_bireysel,Kurşunsuz Benzin 95,Litre
+ulasim_bireysel,Motorin,Litre
+ulasim_bireysel,Otogaz (LPG),Litre
+ulasim_bireysel,Otobüs Bileti,Adet
+ulasim_bireysel,Şehirlerarası Otobüs Bileti,Adet
+ulasim_bireysel,Metro/Tramvay Bilet Yüklemesi,Adet
+ulasim_bireysel,İstanbulkart Yükleme,Adet
+ulasim_bireysel,Araç Kiralama (Rent a Car),Gün
+ulasim_bireysel,Günlük Araç Kiralama Bedeli,Gün
+ulasim_bireysel,VIP Transfer Hizmeti,Adet
+ulasim_bireysel,Havalimanı Transferi,Adet
+ulasim_bireysel,Hızlı Geçiş Sistemi (HGS) Yükleme,Adet
+ulasim_bireysel,Otoyol/Köprü Geçiş Ücreti,Adet
+ulasim_bireysel,Feribot Bileti,Adet
+ulasim_bireysel,Araç Yıkama/Temizlik,Adet
+ulasim_bireysel,Lastik Değişim/Tamir,Adet
+ulasim_bireysel,Araç Bakım Gideri,Adet
+ulasim_bireysel,Kapalı Otopark Ücreti,Saat
+ulasim_bireysel,Havalimanı Otopark Ücreti,Gün
+ulasim_bireysel,Şehir İçi Taksi Ücreti,Adet
+ulasim_bireysel,Havalimanı Taksi Ücreti,Adet
+ulasim_bireysel,Yüksek Hızlı Tren Bileti,Adet
+ulasim_bireysel,Tren Bileti,Adet
+ulasim_bireysel,Araç Muayene Ücreti,Adet
+ulasim_bireysel,Kurşunsuz Benzin 97,Litre
+ulasim_bireysel,Katkılı Kurşunsuz Benzin,Litre
+ulasim_bireysel,Eurodiesel,Litre
+ulasim_bireysel,Katkılı Motorin,Litre
+ulasim_bireysel,AdBlue,Litre

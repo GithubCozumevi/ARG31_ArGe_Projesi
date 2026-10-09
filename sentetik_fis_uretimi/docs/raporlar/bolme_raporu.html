@@ -1,0 +1,278 @@
+<meta charset="utf-8">
+<title>Bölme Raporu: masrafAI nihai veri seti</title>
+<style>
+:root{
+  color-scheme: light;
+  --ground:#fbfbf9; --panel:#ffffff; --ink:#16171a; --muted:#6d6c66;
+  --rule:#e3e2dc; --rule-soft:#efeee9;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --good:#0ca30c; --warn:#fab219; --crit:#d03b3b;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --govde:"Times New Roman",Times,Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme: dark;
+  --ground:#151614; --panel:#1d1e1b; --ink:#f2f1ec; --muted:#a09f96;
+  --rule:#2b2c28; --rule-soft:#232420;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+}}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --ground:#151614; --panel:#1d1e1b; --ink:#f2f1ec; --muted:#a09f96;
+  --rule:#2b2c28; --rule-soft:#232420;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--govde);
+     font-size:17.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:56px 24px 96px}
+p{max-width:68ch}
+h1{font-size:clamp(28px,4vw,40px);line-height:1.12;letter-spacing:-.005em;margin:0 0 12px;
+   text-wrap:balance;font-weight:700}
+h2{font-size:21px;letter-spacing:0;margin:0 0 6px;font-weight:700;text-wrap:balance}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+         color:var(--muted);margin:0 0 4px}
+.lede{color:var(--muted);max-width:64ch;margin:0}
+header{border-bottom:1px solid var(--rule);padding-bottom:28px;margin-bottom:36px}
+.meta{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:16px;
+      display:flex;flex-wrap:wrap;gap:6px 20px}
+section{margin-top:52px;border-top:1px solid var(--rule-soft);padding-top:28px}
+section:first-of-type{border-top:0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+       background:var(--rule);border:1px solid var(--rule);margin:24px 0 0}
+.tile{background:var(--panel);padding:18px 18px 16px}
+.tile .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+         color:var(--muted);display:block;margin-bottom:8px}
+.tile .v{font-family:var(--mono);font-size:27px;font-variant-numeric:tabular-nums;
+         letter-spacing:-.02em;display:block;line-height:1}
+.tile .n{font-size:12.5px;color:var(--muted);margin-top:7px;display:block;line-height:1.45}
+.ok{color:var(--good)} .bad{color:var(--crit)}
+.verdict{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;
+         border:1px solid var(--rule);background:var(--panel);padding:12px 16px;margin-top:24px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:18px}
+.scroll{overflow-x:auto}
+th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+   color:var(--muted);font-weight:500;border-bottom:1px solid var(--rule)}
+td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+td.lbl{font-family:var(--govde);font-variant-numeric:normal}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;margin:20px 0 14px;
+        font-family:var(--mono)}
+.legend span{display:flex;align-items:center;gap:7px}
+.sw{width:11px;height:11px;flex:none}
+.rows{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.row{display:grid;grid-template-columns:minmax(150px,242px) 1fr;gap:14px;align-items:center}
+.row .name{font-size:13px;font-family:var(--mono);overflow:hidden;text-overflow:ellipsis}
+.bar{display:flex;height:19px;background:var(--rule-soft);position:relative}
+.seg{height:100%;position:relative}
+.seg+.seg{margin-left:2px}
+.tick{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ground);
+      box-shadow:0 0 0 1px color-mix(in srgb,var(--ink) 30%,transparent)}
+.pct{font-family:var(--mono);font-size:11px;color:#fff;padding:0 5px;line-height:19px;
+     white-space:nowrap;overflow:hidden}
+.note{font-size:13.5px;color:var(--muted);margin-top:14px;max-width:66ch}
+.split-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:22px}
+.card{border:1px solid var(--rule);background:var(--panel);padding:18px}
+.card .hd{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:14px}
+.card .nm{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.card .big{font-family:var(--mono);font-size:30px;font-variant-numeric:tabular-nums;
+           letter-spacing:-.02em;line-height:1}
+.card .sub{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px}
+.minibar{height:6px;background:var(--rule-soft);margin-top:14px}
+.minibar i{display:block;height:100%}
+footer{margin-top:64px;border-top:1px solid var(--rule);padding-top:20px;
+       font-family:var(--mono);font-size:12px;color:var(--muted)}
+[data-tip]{cursor:default}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--ground);
+     font-family:var(--mono);font-size:11.5px;padding:6px 9px;opacity:0;transition:opacity .1s;
+     z-index:9;white-space:pre;line-height:1.5}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Yazdırma/PDF: bkz. kalite_raporu.html'deki aynı bloğun yorumu -- kaynak
+   sırası yüzünden bu blok EN SONDA durmak zorunda. */
+@media print{
+  .wrap{max-width:none!important}
+  .scroll{overflow-x:visible!important}
+  table{font-size:9px!important}
+  th,td{padding:3px 4px!important;white-space:normal!important}
+  .rows{display:block!important}
+  .row,.ihlal-blok,.pair,.crow{break-inside:avoid;margin-bottom:4px}
+}
+@page{size:landscape;margin:10mm}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">masrafAI &middot; nihai veri seti</p>
+  <h1>Bölme raporu</h1>
+  <p class="lede">21.564 kayıtlık veri setinin eğitim, doğrulama ve test olarak ayrılması.
+  Bölme rastgele değil <strong>gruplu</strong>: birbirinin kopyası olan kayıtlar aynı fazda
+  tutulur, yoksa test skoru ezberle şişer.</p>
+  <div class="meta"><span>kaynak: data/final_veriler/bolme_raporu.json</span><span>veri_bol.py</span><span>seed 42</span></div>
+</header>
+
+<section>
+  <p class="eyebrow">Bütünlük denetimi</p>
+  <h2>Bölünen grup: sıfır</h2>
+  <p class="note">Bir grup, aynı fişin iki kaydı ya da aynı açıklama metnini paylaşan kayıtlardır.
+  İki eksen çakışabildiği için union-find ile tek bileşene indirgenir. Tek bir grubun ikiye
+  ayrılması bile test kümesine eğitimden tanıdık bir kayıt sızdırır.</p>
+  <p class="note">Gruplar zincirlenebilir: mükerrer çiftin bir üyesi "genel gider", öteki "yemek"
+  yazdıysa iki metin kümesi tek gruba bağlanır. En büyük grup bu yüzden 179 kayda ulaşıyor
+  (19 farklı ham metin, çoğu kısa <em>yetersiz</em> notu). Bu 179 kayıt bölünemez, tek blok
+  halinde bir faza gitmek zorundadır; en büyük grup ne kadar şişerse oranları 70/15/15'e
+  oturtmak o kadar zorlaşır.</p>
+  <div id="verdict"></div>
+  <div class="tiles" id="tiles"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Hedef 70 / 15 / 15</p>
+  <h2>Üç bölme</h2>
+  <div class="split-cards" id="cards"></div>
+</section>
+
+<section>
+  <p class="eyebrow">14 anomali türü &middot; en büyük sapma <span id="sapmaTur"></span></p>
+  <h2>Her tür üç bölmeye de dağıldı mı</h2>
+  <p class="note">Satırlar türün <em>kendi</em> toplamına göre okunur: her çubuk %100'dür,
+  ideal kesim 70 ve 85'tedir (ince dikey çizgiler). Bir türün tek bölmede yığılması,
+  o anomalinin test tarafında hiç ölçülememesi demektir.</p>
+  <div class="legend" id="leg1"></div>
+  <div class="rows" id="turRows"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Kompozisyon &middot; bölmeler arası en büyük fark <span id="sapmaKat"></span></p>
+  <h2>Açıklama kategorisi ve onay durumu</h2>
+  <p class="note">Bu iki eksen üç bölmede de aynı oranda olmalı, yoksa doğrulama kümesinde
+  ölçtüğün başarı test kümesinde farklı bir dağılıma uygulanır.</p>
+  <div class="legend" id="leg2"></div>
+  <div class="rows" id="katRows"></div>
+  <div class="legend" id="leg3" style="margin-top:30px"></div>
+  <div class="rows" id="onayRows"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Tam sayılar</p>
+  <h2>Tablo</h2>
+  <div class="scroll"><table id="tbl"></table></div>
+</section>
+
+<footer>veri_bol.py &middot; gruplu bölme, union-find &middot; 2026-08-19 (final_veriler_bolme_raporu_html_uret.py ile yenilendi)</footer>
+</div>
+<div id="tip"></div>
+
+<script>
+const D = {"rapor": {"toplam_kayit": 21564, "grup_sayisi": 18951, "hedef_oranlar": {"egitim": 0.7, "dogrulama": 0.15, "test": 0.15}, "bolmeler": {"egitim": {"adet": 15102, "oran": 0.7003, "onay_durumu": {"onaylandi": {"adet": 7738, "oran": 0.5124}, "gozden_gecirilecek": {"adet": 4023, "oran": 0.2664}, "onaylanmadi": {"adet": 3341, "oran": 0.2212}}, "aciklama_kategorisi": {"yeterli": {"adet": 8122, "oran": 0.5378}, "yetersiz": {"adet": 2983, "oran": 0.1975}, "manipulatif": {"adet": 2697, "oran": 0.1786}, "ai_uretimi": {"adet": 1300, "oran": 0.0861}}, "anomali_turleri": {"mukerrer_fis_yukleme": {"adet": 768, "turun_orani": 0.6982}, "footer_kismi": {"adet": 664, "turun_orani": 0.6938}, "limit_asimi": {"adet": 618, "turun_orani": 0.7112}, "fatura_no_cakismasi": {"adet": 480, "turun_orani": 0.7122}, "yasakli_kategori": {"adet": 342, "turun_orani": 0.7023}, "satir_toplami": {"adet": 338, "turun_orani": 0.6983}, "gelecek_tarihli": {"adet": 342, "turun_orani": 0.7125}, "ondalik_kaymasi": {"adet": 342, "turun_orani": 0.714}, "kdv_tutari": {"adet": 332, "turun_orani": 0.6975}, "is_kolu_kategori_uyumsuzlugu": {"adet": 331, "turun_orani": 0.6983}, "gecersiz_kimlik_no": {"adet": 332, "turun_orani": 0.7004}, "genel_toplam": {"adet": 318, "turun_orani": 0.6958}, "dusuk_ondalik_kaymasi": {"adet": 316, "turun_orani": 0.7038}}}, "dogrulama": {"adet": 3217, "oran": 0.1492, "onay_durumu": {"onaylandi": {"adet": 1665, "oran": 0.5176}, "gozden_gecirilecek": {"adet": 846, "oran": 0.263}, "onaylanmadi": {"adet": 706, "oran": 0.2195}}, "aciklama_kategorisi": {"yeterli": {"adet": 1742, "oran": 0.5415}, "yetersiz": {"adet": 620, "oran": 0.1927}, "manipulatif": {"adet": 583, "oran": 0.1812}, "ai_uretimi": {"adet": 272, "oran": 0.0846}}, "anomali_turleri": {"mukerrer_fis_yukleme": {"adet": 170, "turun_orani": 0.1545}, "footer_kismi": {"adet": 146, "turun_orani": 0.1526}, "limit_asimi": {"adet": 130, "turun_orani": 0.1496}, "fatura_no_cakismasi": {"adet": 94, "turun_orani": 0.1395}, "yasakli_kategori": {"adet": 69, "turun_orani": 0.1417}, "satir_toplami": {"adet": 73, "turun_orani": 0.1508}, "gelecek_tarihli": {"adet": 71, "turun_orani": 0.1479}, "ondalik_kaymasi": {"adet": 65, "turun_orani": 0.1357}, "kdv_tutari": {"adet": 72, "turun_orani": 0.1513}, "is_kolu_kategori_uyumsuzlugu": {"adet": 70, "turun_orani": 0.1477}, "gecersiz_kimlik_no": {"adet": 70, "turun_orani": 0.1477}, "genel_toplam": {"adet": 69, "turun_orani": 0.151}, "dusuk_ondalik_kaymasi": {"adet": 66, "turun_orani": 0.147}}}, "test": {"adet": 3245, "oran": 0.1505, "onay_durumu": {"onaylandi": {"adet": 1655, "oran": 0.51}, "gozden_gecirilecek": {"adet": 870, "oran": 0.2681}, "onaylanmadi": {"adet": 720, "oran": 0.2219}}, "aciklama_kategorisi": {"yeterli": {"adet": 1736, "oran": 0.535}, "yetersiz": {"adet": 648, "oran": 0.1997}, "manipulatif": {"adet": 566, "oran": 0.1744}, "ai_uretimi": {"adet": 295, "oran": 0.0909}}, "anomali_turleri": {"mukerrer_fis_yukleme": {"adet": 162, "turun_orani": 0.1473}, "footer_kismi": {"adet": 147, "turun_orani": 0.1536}, "limit_asimi": {"adet": 121, "turun_orani": 0.1392}, "fatura_no_cakismasi": {"adet": 100, "turun_orani": 0.1484}, "yasakli_kategori": {"adet": 76, "turun_orani": 0.1561}, "satir_toplami": {"adet": 73, "turun_orani": 0.1508}, "gelecek_tarihli": {"adet": 67, "turun_orani": 0.1396}, "ondalik_kaymasi": {"adet": 72, "turun_orani": 0.1503}, "kdv_tutari": {"adet": 72, "turun_orani": 0.1513}, "is_kolu_kategori_uyumsuzlugu": {"adet": 73, "turun_orani": 0.154}, "gecersiz_kimlik_no": {"adet": 72, "turun_orani": 0.1519}, "genel_toplam": {"adet": 70, "turun_orani": 0.1532}, "dusuk_ondalik_kaymasi": {"adet": 67, "turun_orani": 0.1492}}}}, "dogrulama": {"bolunen_grup": 0, "atanan_kayit": 21564, "bolme_toplamlari_esit_mi": true, "en_buyuk_grup": 179}}, "bolmeler": ["egitim", "dogrulama", "test"], "turler": ["mukerrer_fis_yukleme", "footer_kismi", "limit_asimi", "fatura_no_cakismasi", "yasakli_kategori", "satir_toplami", "gelecek_tarihli", "ondalik_kaymasi", "kdv_tutari", "is_kolu_kategori_uyumsuzlugu", "gecersiz_kimlik_no", "genel_toplam", "dusuk_ondalik_kaymasi"], "kats": ["yeterli", "yetersiz", "manipulatif", "ai_uretimi"], "onaylar": ["onaylandi", "gozden_gecirilecek", "onaylanmadi"], "sapma": {"tur": 0.0143, "kat": 0.007, "onay": 0.0076}};
+const R = D.rapor, B = D.bolmeler, SER = ['--s1','--s2','--s3'];
+const AD = {egitim:'Eğitim', dogrulama:'Doğrulama', test:'Test'};
+const KATAD = {yeterli:'yeterli', yetersiz:'yetersiz', manipulatif:'manipulatif', ai_uretimi:'ai_uretimi'};
+const ONAYAD = {onaylandi:'onaylandı', gozden_gecirilecek:'gözden geçirilecek', onaylanmadi:'onaylanmadı'};
+const nf = n => n.toLocaleString('tr-TR');
+const pf = (x,d=1) => '%' + (100*x).toFixed(d).replace('.', ',');
+const cv = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+const tip = document.getElementById('tip');
+function bindTip(el, text){
+  el.dataset.tip = text;
+  el.addEventListener('pointerenter', e => { tip.textContent = text; tip.style.opacity = 1; });
+  el.addEventListener('pointermove', e => {
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8) + 'px';
+    tip.style.top  = (e.clientY + 18) + 'px';
+  });
+  el.addEventListener('pointerleave', () => tip.style.opacity = 0);
+}
+
+/* verdict + tiles */
+const dg = R.dogrulama, tamam = dg.bolunen_grup === 0 && dg.bolme_toplamlari_esit_mi;
+document.getElementById('verdict').innerHTML =
+  '<div class="verdict"><span class="dot" style="background:' + (tamam ? cv('--good') : cv('--crit')) + '"></span>' +
+  (tamam ? 'TAMAM: bölünen grup 0, atanan kayıt toplamı tutuyor'
+         : 'HATA: bölünen grup ' + dg.bolunen_grup) + '</div>';
+
+document.getElementById('tiles').innerHTML = [
+  ['Toplam kayıt', nf(R.toplam_kayit), 'girdi ve etiket dosyaları aynı kümeyi taşıyor'],
+  ['Grup sayısı', nf(R.grup_sayisi), (R.toplam_kayit - R.grup_sayisi) + ' kayıt bir başkasıyla aynı gruba bağlı'],
+  ['Bölünen grup', dg.bolunen_grup, dg.bolunen_grup === 0 ? 'hiçbir grup iki faza ayrılmadı' : 'sızıntı var'],
+  ['En büyük grup', nf(dg.en_buyuk_grup), 'tek parça gitmek zorunda olan en kalabalık küme; hepsi eğitime düştü']
+].map(([k,v,n]) => '<div class="tile"><span class="k">' + k + '</span><span class="v' +
+  (k === 'Bölünen grup' ? (dg.bolunen_grup === 0 ? ' ok' : ' bad') : '') + '">' + v +
+  '</span><span class="n">' + n + '</span></div>').join('');
+
+/* split cards */
+document.getElementById('cards').innerHTML = B.map((b,i) => {
+  const s = R.bolmeler[b], hedef = R.hedef_oranlar[b];
+  return '<div class="card"><div class="hd"><span class="nm">' + AD[b] + '</span>' +
+    '<span class="nm" style="color:var(--muted)">hedef ' + pf(hedef,0) + '</span></div>' +
+    '<span class="big">' + nf(s.adet) + '</span>' +
+    '<div class="sub">' + pf(s.oran,2) + ' &middot; sapma ' +
+      ((s.oran-hedef>=0?'+':'') + (100*(s.oran-hedef)).toFixed(2).replace('.',',')) + ' puan</div>' +
+    '<div class="minibar"><i style="width:' + (100*s.oran) + '%;background:var(' + SER[i] + ')"></i></div></div>';
+}).join('');
+
+/* legends */
+function legend(el, items){
+  document.getElementById(el).innerHTML = items.map(([n,c]) =>
+    '<span><i class="sw" style="background:var(' + c + ')"></i>' + n + '</span>').join('');
+}
+legend('leg1', B.map((b,i) => [AD[b], SER[i]]));
+legend('leg2', D.kats.map((k,i) => [KATAD[k], '--s'+(i+1)]));
+legend('leg3', D.onaylar.map((k,i) => [ONAYAD[k], '--s'+(i+1)]));
+
+/* 100% stacked rows */
+function stackRows(el, satirlar, ticks){
+  document.getElementById(el).innerHTML = satirlar.map(s => {
+    const segs = s.parts.map((p,i) =>
+      '<i class="seg" style="width:' + (100*p.v) + '%;background:var(' + p.c + ')" data-i="' + i + '">' +
+      (p.v > .11 ? '<span class="pct">' + pf(p.v,1) + '</span>' : '') + '</i>').join('');
+    const tk = (ticks||[]).map(t => '<i class="tick" style="left:' + (100*t) + '%"></i>').join('');
+    return '<div class="row"><span class="name">' + s.name + '</span>' +
+           '<span class="bar" data-row="' + s.name + '">' + segs + tk + '</span></div>';
+  }).join('');
+  document.querySelectorAll('#' + el + ' .seg').forEach(seg => {
+    const bar = seg.closest('.bar'), nm = bar.dataset.row;
+    const s = satirlar.find(x => x.name === nm), p = s.parts[+seg.dataset.i];
+    bindTip(seg, nm + '\n' + p.n + ': ' + nf(p.adet) + '  (' + pf(p.v,1) + ')');
+  });
+}
+
+stackRows('turRows', D.turler.map(t => ({
+  name: t,
+  parts: B.map((b,i) => ({ n: AD[b], c: SER[i],
+    v: R.bolmeler[b].anomali_turleri[t].turun_orani,
+    adet: R.bolmeler[b].anomali_turleri[t].adet }))
+})), [0.70, 0.85]);
+
+function eksenRows(el, eksen, keys, adlar){
+  stackRows(el, B.map(b => ({
+    name: AD[b],
+    parts: keys.map((k,i) => {
+      const d = R.bolmeler[b][eksen][k] || {adet:0, oran:0};
+      return { n: adlar[k], c: '--s'+(i+1), v: d.oran, adet: d.adet };
+    })
+  })));
+}
+eksenRows('katRows', 'aciklama_kategorisi', D.kats, KATAD);
+eksenRows('onayRows', 'onay_durumu', D.onaylar, ONAYAD);
+
+document.getElementById('sapmaTur').textContent = (100*D.sapma.tur).toFixed(2).replace('.',',') + ' puan';
+document.getElementById('sapmaKat').textContent = (100*D.sapma.kat).toFixed(2).replace('.',',') + ' puan';
+
+/* table */
+let h = '<thead><tr><th>Anomali türü</th>' + B.map(b => '<th>' + AD[b] + '</th>').join('') +
+        '<th>Toplam</th><th>Eğitim payı</th></tr></thead><tbody>';
+D.turler.forEach(t => {
+  const a = B.map(b => R.bolmeler[b].anomali_turleri[t].adet);
+  const tot = a.reduce((x,y) => x+y, 0);
+  h += '<tr><td class="lbl">' + t + '</td>' + a.map(x => '<td>' + nf(x) + '</td>').join('') +
+       '<td>' + nf(tot) + '</td><td>' + pf(a[0]/tot,1) + '</td></tr>';
+});
+h += '<tr style="border-top:2px solid var(--rule)"><td class="lbl"><strong>Tüm kayıtlar</strong></td>' +
+     B.map(b => '<td><strong>' + nf(R.bolmeler[b].adet) + '</strong></td>').join('') +
+     '<td><strong>' + nf(R.toplam_kayit) + '</strong></td><td><strong>' +
+     pf(R.bolmeler.egitim.oran,2) + '</strong></td></tr></tbody>';
+document.getElementById('tbl').innerHTML = h;
+</script>

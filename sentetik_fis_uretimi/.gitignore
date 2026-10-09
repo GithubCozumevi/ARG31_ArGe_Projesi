@@ -1,0 +1,8 @@
+﻿.env
+__pycache__/
+*.pyc
+.DS_Store
+__MACOSX/
+21k_synthetic_data/
+*.zip
+data/fisler/

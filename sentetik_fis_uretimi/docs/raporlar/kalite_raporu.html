@@ -1,0 +1,379 @@
+<meta charset="utf-8">
+<title>Açıklama Kalitesi: masrafAI nihai veri seti</title>
+<style>
+:root{
+  color-scheme: light;
+  --ground:#fbfbf9; --panel:#ffffff; --ink:#16171a; --muted:#6d6c66;
+  --rule:#e3e2dc; --rule-soft:#efeee9;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --good:#0ca30c; --warn:#fab219; --crit:#d03b3b;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --govde:"Times New Roman",Times,Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme: dark;
+  --ground:#151614; --panel:#1d1e1b; --ink:#f2f1ec; --muted:#a09f96;
+  --rule:#2b2c28; --rule-soft:#232420;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+}}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --ground:#151614; --panel:#1d1e1b; --ink:#f2f1ec; --muted:#a09f96;
+  --rule:#2b2c28; --rule-soft:#232420;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--govde);
+     font-size:17.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:56px 24px 96px}
+p{max-width:68ch}
+h1{font-size:clamp(28px,4vw,40px);line-height:1.12;letter-spacing:-.005em;margin:0 0 12px;
+   text-wrap:balance;font-weight:700}
+h2{font-size:21px;letter-spacing:0;margin:0 0 6px;font-weight:700;text-wrap:balance}
+h3{font-size:14px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;
+   color:var(--muted);font-weight:500;margin:26px 0 10px}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+         color:var(--muted);margin:0 0 4px}
+.lede{color:var(--muted);max-width:64ch;margin:0}
+header{border-bottom:1px solid var(--rule);padding-bottom:28px;margin-bottom:36px}
+.meta{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:16px;
+      display:flex;flex-wrap:wrap;gap:6px 20px}
+section{margin-top:52px;border-top:1px solid var(--rule-soft);padding-top:28px}
+section:first-of-type{border-top:0}
+.note{font-size:13.5px;color:var(--muted);margin-top:14px;max-width:66ch}
+.callout{border-left:2px solid var(--warn);padding:2px 0 2px 16px;margin:20px 0;
+         font-size:14px;color:var(--muted);max-width:66ch}
+.callout strong{color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px;margin-top:22px}
+.card{border:1px solid var(--rule);background:var(--panel);padding:17px}
+.card .nm{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+          display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.card .big{font-family:var(--mono);font-size:28px;font-variant-numeric:tabular-nums;
+           letter-spacing:-.02em;line-height:1}
+.card dl{display:grid;grid-template-columns:auto auto;gap:5px 12px;margin:14px 0 0;
+         font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+.card dt{color:var(--muted)} .card dd{margin:0;text-align:right}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:18px}
+.scroll{overflow-x:auto}
+th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+   color:var(--muted);font-weight:500;border-bottom:1px solid var(--rule)}
+td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+td.lbl{font-family:var(--govde);font-variant-numeric:normal}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;margin:20px 0 14px;font-family:var(--mono)}
+.legend span{display:flex;align-items:center;gap:7px}
+.sw{width:11px;height:11px;flex:none}
+.rows{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.row{display:grid;grid-template-columns:minmax(120px,150px) 1fr;gap:14px;align-items:center}
+.row .name{font-size:13px;font-family:var(--mono);overflow:hidden;text-overflow:ellipsis}
+.ihlal-blok{margin-bottom:4px}
+.ihlal-aciklama{font-size:13px;color:var(--muted);margin:4px 0 0;font-family:var(--govde)}
+.bar{display:flex;height:19px;background:var(--rule-soft);position:relative}
+.seg{height:100%;position:relative}
+.seg+.seg{margin-left:2px}
+.pct{font-family:var(--mono);font-size:11px;color:#fff;padding:0 5px;line-height:19px;
+     white-space:nowrap;overflow:hidden}
+.pair{display:grid;grid-template-columns:minmax(120px,150px) 1fr;gap:14px;align-items:center;
+      margin-bottom:7px}
+.pbar{display:flex;flex-direction:column;gap:3px}
+.pline{display:flex;align-items:center;gap:8px}
+.pline i{height:13px;display:block;flex:none}
+.pline b{font-family:var(--mono);font-size:11px;font-weight:400;color:var(--muted);
+         font-variant-numeric:tabular-nums}
+.hist{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:22px}
+.hbox{border:1px solid var(--rule);background:var(--panel);padding:14px 14px 10px}
+.hbox .ht{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+          display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.hcols{display:flex;align-items:flex-end;gap:2px;height:74px}
+.hcols i{flex:1;display:block;min-height:1px}
+.hax{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;
+     color:var(--muted);margin-top:6px}
+.collapse{margin-top:20px;display:flex;flex-direction:column;gap:1px;background:var(--rule);
+          border:1px solid var(--rule)}
+.crow{background:var(--panel);padding:9px 14px;display:grid;
+      grid-template-columns:58px 1fr auto;gap:14px;align-items:center;font-size:14px}
+.crow .ct{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.crow .cm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crow .ck{font-family:var(--mono);font-size:11px;padding:2px 7px;border:1px solid var(--rule)}
+footer{margin-top:64px;border-top:1px solid var(--rule);padding-top:20px;
+       font-family:var(--mono);font-size:12px;color:var(--muted)}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--ground);
+     font-family:var(--mono);font-size:11.5px;padding:6px 9px;opacity:0;transition:opacity .1s;
+     z-index:9;white-space:pre;line-height:1.5}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Yazdırma/PDF: .scroll{overflow-x:auto} tarayıcıda kaydırılabilir ama
+   yazdırmada scroll diye bir şey yok -- taşan sütunlar sessizce kırpılıyordu.
+   Bu blok EN SONDA durmalı, yoksa aynı seçiciyle (th,td) yukarıda tanımlı
+   white-space:nowrap/padding kuralları kaynak sırasına göre bunun üzerine
+   yazar (medya sorgusu içinde olmak tek başına öncelik vermiyor). */
+@media print{
+  .wrap{max-width:none!important}
+  .scroll{overflow-x:visible!important}
+  table{font-size:9px!important}
+  th,td{padding:3px 4px!important;white-space:normal!important}
+  /* display:flex/grid olan konteynerler yazdırmada BÖLÜNEMEZ -- içeriği
+     sayfaya sığmazsa TÜMÜ bir sonraki sayfaya atılır, öncekinin altı boş
+     kalır. .rows bunun kaynağıydı (uzun ihlal türü listesi); block'a
+     çevirince öğeler artık normal akışta sayfa sınırında bölünebiliyor. */
+  .rows{display:block!important}
+  .row,.ihlal-blok,.pair,.crow{break-inside:avoid;margin-bottom:4px}
+}
+@page{size:landscape;margin:10mm}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">masrafAI &middot; nihai veri seti</p>
+  <h1>Açıklama kalitesi</h1>
+  <p class="lede">21.564 LLM üretimi açıklama metninin çeşitlilik, uzunluk, dizgi ve
+  kural uyumu ölçümleri. Buradaki &ldquo;kalite&rdquo; yazım güzelliği değil
+  <strong>kategori sadakati</strong>: iyi bir <em>yetersiz</em> metin kısa ve
+  dayanaksızdır, ve bu doğrudur.</p>
+  <div class="meta"><span>qwen3:8b</span><span>data/final_veriler</span><span>aciklama_analiz.py ölçütleri</span></div>
+</header>
+
+<section>
+  <p class="eyebrow">Dört kategori</p>
+  <h2>Genel görünüm</h2>
+  <div class="cards" id="cards"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Diversity &middot; distinct-1 and distinct-2</p>
+  <h2>Raw numbers mislead; equal sample size is required to compare</h2>
+  <p class="note"><strong>distinct-1</strong> reports how many of all the words in a category
+  are distinct from one another. If 100 words were written in total and 40 of them are
+  different, distinct-1 = 0.40. As the number approaches 1, the model is picking a different
+  word each time; as it approaches 0, it keeps returning the same few words.</p>
+  <p class="note"><strong>distinct-2</strong> runs the same calculation over adjacent word
+  pairs instead of single words ("for office", "office supplies"). When the words differ but
+  the ordering stays the same, only the pairwise measure catches it: "general expense, I
+  bought" and "general expense, I paid" look fine under distinct-1 but the repetition
+  resurfaces under distinct-2.</p>
+  <p class="note">This ratio is sensitive to sample size: as a set grows, finding a new word
+  gets harder and the ratio falls on its own. Comparing a 12,000-text category with a
+  2,000-text one as-is handicaps the larger one. For that reason the measurement on the left
+  shows all texts, while the one on the right shows every category downsampled to the same
+  size as the smallest one (<span id="esitN"></span> texts).</p>
+  <div class="callout"><strong>The ranking reverses.</strong> Looking at all texts,
+  <em>manipulative</em> appears the most diverse; at equal sample size <em>adequate</em>
+  takes the lead and <em>AI-generated</em> drops to the bottom as the most memorizable
+  category. The formal register confines it to a narrow set of fixed patterns.</p>
+  <div class="legend"><span><i class="sw" style="background:var(--s1)"></i>all texts</span>
+    <span><i class="sw" style="background:var(--s3)"></i>equal sample size</span></div>
+  <h3>distinct-1</h3><div id="d1"></div>
+  <h3>distinct-2</h3><div id="d2"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Uzunluk dağılımı &middot; karakter</p>
+  <h2>Kategoriler uzunlukta ayrışıyor</h2>
+  <p class="note">Bu ayrışma <strong>kurucu</strong>, kusur değil: <em>yetersiz</em>in
+  kısalığı onu yetersiz yapan şeydir. Yine de sınıflandırıcı için tek başına güçlü bir
+  ipucu; metrikleri okurken uzunluğun ne kadarını taşıdığını akılda tut.</p>
+  <div class="hist" id="hist"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Typographic signature</p>
+  <h2>Starting with a capital letter and ending with a period</h2>
+  <p class="note">This pair of binary signals once identified the category on its own with
+  68.4% accuracy; in production it was pulled toward the target distribution with
+  <code>dizgi_normalize</code>. <em>AI-generated</em> is deliberately excluded: 100% formal
+  typography is its definition.</p>
+  <div class="legend"><span><i class="sw" style="background:var(--s1)"></i>starts with capital</span>
+    <span><i class="sw" style="background:var(--s2)"></i>ends with period</span></div>
+  <div id="dizgi"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Tekrar &middot; benzersiz metin oranı <span id="benz"></span></p>
+  <h2>En çok tekrarlanan açıklamalar</h2>
+  <p class="note">Normalize edilmiş metinler. Tekrarların neredeyse tamamı
+  <em>yetersiz</em>de: farklı çalışanların bağımsız olarak &ldquo;genel gider&rdquo;
+  yazması gerçekçidir. <code>veri_bol</code> aynı metni paylaşan kayıtları aynı faza
+  koyduğu için bu tekrarlar test skorunu şişirmez.</p>
+  <div class="collapse" id="collapse"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Üretim</p>
+  <h2>Deneme sayısı ve kalan ihlaller</h2>
+  <p class="note">Deneme sayısı ve yakın-kopya oranı üretim anının meta verisidir, final veri setinde saklanmaz -- burada yeniden üretilemiyor. &ldquo;Kalan ihlal&rdquo; ise nihai <code>aciklama_metni</code> üzerinde <code>ihlalleri_bul</code> yeniden çalıştırılarak hesaplanır: ship edilen veri setindeki gerçek kalan kusur budur.</p>
+  <div class="cards" id="uretimCards"></div>
+  <h3>Kalan ihlal türleri</h3>
+  <div class="rows" id="ihlal"></div>
+  <h3>Kategori bazlı ihlalli kayıt oranı</h3>
+  <div class="rows" id="katIhlal"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Etiket ilişkisi</p>
+  <h2>Açıklama kategorisi ve onay durumu</h2>
+  <p class="note">Onay kararı iki eksenden gelir: anomali var mı, ve açıklama hangi
+  kategoride. <em>yeterli</em> dışındaki hiçbir kategori onay alamaz. <em>yeterli</em>
+  içinde onay almayan 481 kaydın <strong>481'i de anomalili</strong>. Ters yönde tek bir
+  istisna var: anomali etiketi taşıyıp yine de onaylanan <strong>259 kayıt</strong>, hepsi
+  mükerrer çiftin önce yüklenen üyesi. İlk yükleme kusursuzdur, suç ikincisindedir.</p>
+  <div class="legend"><span><i class="sw" style="background:var(--s1)"></i>onaylandı</span>
+    <span><i class="sw" style="background:var(--s2)"></i>gözden geçirilecek</span>
+    <span><i class="sw" style="background:var(--s3)"></i>onaylanmadı</span></div>
+  <div class="rows" id="capraz"></div>
+</section>
+
+<section>
+  <p class="eyebrow">Tam sayılar</p>
+  <h2>Tablo</h2>
+  <div class="scroll"><table id="tbl"></table></div>
+</section>
+
+<footer>aciklama_uretim_core.py &middot; 2026-08-19</footer>
+</div>
+<div id="tip"></div>
+
+<script>
+const D = {"ozet": {"yeterli": {"n": 11600, "ort_krk": 98.4, "med_krk": 91, "min_krk": 25, "max_krk": 229, "ort_kel": 13.1, "d1": 0.0732, "d2": 0.3402, "benzersiz": 11585}, "yetersiz": {"n": 4251, "ort_krk": 28.1, "med_krk": 27, "min_krk": 5, "max_krk": 132, "ort_kel": 4.1, "d1": 0.0758, "d2": 0.2726, "benzersiz": 2564}, "manipulatif": {"n": 3846, "ort_krk": 105.7, "med_krk": 102, "min_krk": 35, "max_krk": 245, "ort_kel": 13.3, "d1": 0.1108, "d2": 0.3902, "benzersiz": 3843}, "ai_uretimi": {"n": 1867, "ort_krk": 131.0, "med_krk": 125, "min_krk": 48, "max_krk": 251, "ort_kel": 14.3, "d1": 0.104, "d2": 0.293, "benzersiz": 1846}}, "esit": {"yeterli": {"n": 1867, "d1": 0.1743, "d2": 0.5365}, "yetersiz": {"n": 1867, "d1": 0.112, "d2": 0.3516}, "manipulatif": {"n": 1867, "d1": 0.1488, "d2": 0.4636}, "ai_uretimi": {"n": 1867, "d1": 0.104, "d2": 0.293}}, "dizgi": {"yeterli": {"buyuk": 0.7691, "nokta": 0.988, "n": 11600}, "yetersiz": {"buyuk": 0.2101, "nokta": 0.1077, "n": 4251}, "manipulatif": {"buyuk": 0.7356, "nokta": 0.5749, "n": 3846}, "ai_uretimi": {"buyuk": 1.0, "nokta": 1.0, "n": 1867}}, "hist": {"yeterli": {"20": 121, "40": 1398, "60": 2728, "80": 2548, "100": 1736, "120": 1276, "140": 895, "160": 513, "180": 239, "200": 109, "220": 37}, "yetersiz": {"0": 1066, "20": 2532, "40": 597, "60": 46, "80": 8, "100": 1, "120": 1}, "manipulatif": {"20": 2, "40": 211, "60": 693, "80": 899, "100": 821, "120": 605, "140": 356, "160": 165, "180": 68, "200": 21, "220": 4, "240": 1}, "ai_uretimi": {"40": 21, "60": 118, "80": 364, "100": 334, "120": 304, "140": 251, "160": 220, "180": 94, "200": 108, "220": 51, "240": 2}}, "collapse": [{"metin": "genel gider", "adet": 137, "kategori": "yetersiz"}, {"metin": "market alışverişi", "adet": 68, "kategori": "yetersiz"}, {"metin": "temizlik malzemesi aldım", "adet": 54, "kategori": "yetersiz"}, {"metin": "bakım ürünü aldım", "adet": 52, "kategori": "yetersiz"}, {"metin": "ulaşım için gerekliydi aldım işte", "adet": 41, "kategori": "yetersiz"}, {"metin": "bakım ürünü", "adet": 34, "kategori": "yetersiz"}, {"metin": "gerekliydi aldım işte", "adet": 31, "kategori": "yetersiz"}, {"metin": "market alışverişi, gerekliydi aldım işte", "adet": 25, "kategori": "yetersiz"}, {"metin": "nakliye gideri", "adet": 25, "kategori": "yetersiz"}, {"metin": "iş ile ilgili gerekliydi aldım işte", "adet": 23, "kategori": "yetersiz"}], "benzersiz_oran": 0.92, "capraz": {"yeterli": {"onaylandi": 11058, "gozden_gecirilecek": 325, "onaylanmadi": 217}, "yetersiz": {"gozden_gecirilecek": 3332, "onaylanmadi": 919, "onaylandi": 0}, "manipulatif": {"onaylanmadi": 2492, "gozden_gecirilecek": 1354, "onaylandi": 0}, "ai_uretimi": {"gozden_gecirilecek": 728, "onaylanmadi": 1139, "onaylandi": 0}}, "anomali_kategori": {"mukerrer_fis_yukleme": {"yeterli": 297, "yetersiz": 192, "manipulatif": 356, "ai_uretimi": 255}, "footer_kismi": {"yeterli": 18, "yetersiz": 38, "manipulatif": 613, "ai_uretimi": 288}, "limit_asimi": {"yeterli": 124, "yetersiz": 88, "manipulatif": 499, "ai_uretimi": 158}, "fatura_no_cakismasi": {"yeterli": 383, "yetersiz": 201, "manipulatif": 46, "ai_uretimi": 44}, "yasakli_kategori": {"yeterli": 7, "yetersiz": 1, "manipulatif": 473, "ai_uretimi": 6}, "satir_toplami": {"yeterli": 10, "yetersiz": 32, "manipulatif": 239, "ai_uretimi": 203}, "gelecek_tarihli": {"yeterli": 14, "yetersiz": 4, "manipulatif": 419, "ai_uretimi": 43}, "ondalik_kaymasi": {"yeterli": 122, "yetersiz": 110, "manipulatif": 141, "ai_uretimi": 106}, "kdv_tutari": {"yeterli": 3, "yetersiz": 179, "manipulatif": 107, "ai_uretimi": 187}, "is_kolu_kategori_uyumsuzlugu": {"yeterli": 14, "yetersiz": 6, "manipulatif": 435, "ai_uretimi": 19}, "gecersiz_kimlik_no": {"yeterli": 26, "yetersiz": 250, "manipulatif": 51, "ai_uretimi": 147}, "genel_toplam": {"yeterli": 2, "yetersiz": 3, "manipulatif": 371, "ai_uretimi": 81}, "dusuk_ondalik_kaymasi": {"yeterli": 17, "yetersiz": 272, "manipulatif": 45, "ai_uretimi": 115}}, "uretim": {"n": 21564, "ihlal": {"enum_sizinti": 909, "verbatim_kopya": 562, "pasif_kalip": 383, "yeterli_dayanaksiz": 117, "firma_ek_hatasi": 104, "vurgu_fazlasi": 95, "sizinti": 61, "uzunluk": 42, "urun_detay_kopya": 14, "tutar_sizinti": 7, "yeterli_halusinasyon": 2, "kapanis_eksik": 1}, "kat_ihlal": {"yeterli": [1013, 11600], "yetersiz": [661, 4251], "manipulatif": [449, 3846], "ai_uretimi": [7, 1867]}}, "kats": ["yeterli", "yetersiz", "manipulatif", "ai_uretimi"]};
+const K = D.kats, SER = ['--s1','--s2','--s3','--s4'];
+const KAT_EN = {yeterli:'adequate', yetersiz:'inadequate', manipulatif:'manipulative', ai_uretimi:'AI-generated'};
+const nf = n => n.toLocaleString('tr-TR');
+const pf = (x,d=1) => '%' + (100*x).toFixed(d).replace('.', ',');
+const nd = (x,d=3) => x.toFixed(d).replace('.', ',');
+
+const tip = document.getElementById('tip');
+function bindTip(el, text){
+  el.addEventListener('pointerenter', () => { tip.textContent = text; tip.style.opacity = 1; });
+  el.addEventListener('pointermove', e => {
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8) + 'px';
+    tip.style.top  = (e.clientY + 18) + 'px';
+  });
+  el.addEventListener('pointerleave', () => tip.style.opacity = 0);
+}
+
+/* kategori kartlari */
+document.getElementById('cards').innerHTML = K.map((k,i) => {
+  const o = D.ozet[k];
+  return '<div class="card"><div class="nm"><i class="sw" style="background:var(' + SER[i] + ')"></i>' +
+    k + '</div><span class="big">' + nf(o.n) + '</span>' +
+    '<dl><dt>benzersiz metin</dt><dd>' + nf(o.benzersiz) + '</dd>' +
+    '<dt>distinct-1</dt><dd>' + nd(o.d1) + '</dd>' +
+    '<dt>distinct-2</dt><dd>' + nd(o.d2) + '</dd>' +
+    '<dt>ort. uzunluk</dt><dd>' + nd(o.ort_krk,1) + ' krk</dd>' +
+    '<dt>ort. kelime</dt><dd>' + nd(o.ort_kel,1) + '</dd></dl></div>';
+}).join('');
+
+/* ham vs esit ornekleme */
+document.getElementById('esitN').textContent = nf(D.esit[K[0]].n);
+function pairChart(el, alan){
+  const maxv = Math.max(...K.map(k => Math.max(D.ozet[k][alan], D.esit[k][alan])));
+  document.getElementById(el).innerHTML = K.map(k => {
+    const a = D.ozet[k][alan], b = D.esit[k][alan];
+    const line = (v,c,lab) => '<span class="pline"><i style="width:' + (100*v/maxv) +
+      '%;background:var(' + c + ')" data-t="' + lab + ': ' + nd(v) + '"></i><b>' + nd(v) + '</b></span>';
+    return '<div class="pair"><span class="name">' + KAT_EN[k] + '</span>' +
+      '<span class="pbar">' + line(a,'--s1','all') + line(b,'--s3','equal n') + '</span></div>';
+  }).join('');
+  document.querySelectorAll('#' + el + ' .pline i').forEach(n => bindTip(n, n.dataset.t));
+}
+pairChart('d1','d1'); pairChart('d2','d2');
+
+/* uzunluk histogramlari */
+document.getElementById('hist').innerHTML = K.map((k,i) => {
+  const h = D.hist[k], keys = Object.keys(h).map(Number).sort((a,b) => a-b);
+  const mx = Math.max(...keys.map(b => h[b])), o = D.ozet[k];
+  const cols = keys.map(b => '<i style="height:' + Math.max(1, 100*h[b]/mx) +
+    '%;background:var(' + SER[i] + ')" data-t="' + b + '-' + (b+19) + ' krk: ' + nf(h[b]) + ' metin"></i>').join('');
+  return '<div class="hbox"><div class="ht"><i class="sw" style="background:var(' + SER[i] + ')"></i>' +
+    k + '</div><div class="hcols">' + cols + '</div>' +
+    '<div class="hax"><span>' + keys[0] + '</span><span>medyan ' + o.med_krk +
+    '</span><span>' + (keys[keys.length-1] >= 260 ? '260+' : keys[keys.length-1]) + '</span></div></div>';
+}).join('');
+document.querySelectorAll('.hcols i').forEach(n => bindTip(n, n.dataset.t));
+
+/* dizgi */
+const dmax = 1;
+document.getElementById('dizgi').innerHTML = K.map(k => {
+  const d = D.dizgi[k];
+  const line = (v,c,lab) => '<span class="pline"><i style="width:' + (100*v/dmax) +
+    '%;background:var(' + c + ')" data-t="' + lab + ': ' + pf(v,1) + '"></i><b>' + pf(v,1) + '</b></span>';
+  return '<div class="pair"><span class="name">' + KAT_EN[k] + '</span><span class="pbar">' +
+    line(d.buyuk,'--s1','capital') + line(d.nokta,'--s2','period') + '</span></div>';
+}).join('');
+document.querySelectorAll('#dizgi .pline i').forEach(n => bindTip(n, n.dataset.t));
+
+/* collapse */
+document.getElementById('benz').textContent = pf(D.benzersiz_oran,1);
+document.getElementById('collapse').innerHTML = D.collapse.map(c =>
+  '<div class="crow"><span class="ct">' + c.adet + '&times;</span>' +
+  '<span class="cm">' + c.metin + '</span>' +
+  '<span class="ck">' + c.kategori + '</span></div>').join('');
+
+/* uretim */
+const U = D.uretim, tot = U.n;
+const ihlalliToplam = Object.values(U.kat_ihlal).reduce((a,b) => a + b[0], 0);
+document.getElementById('uretimCards').innerHTML = [
+  ['Kalan ihlalli kayıt', nf(ihlalliToplam), pf(ihlalliToplam/tot,1) + ' (final metinde en az bir kural ihlali)']
+].map(([k,v,n]) => '<div class="card"><div class="nm">' + k + '</div><span class="big">' + v +
+  '</span><dl><dt style="grid-column:1/-1;text-align:left">' + n + '</dt></dl></div>').join('');
+
+const IHLAL_ACIKLAMA = {
+  enum_sizinti: "Kod formatındaki kategori adı (kisisel_bakim vb.) doğrudan metne yansımış.",
+  verbatim_kopya: "Prompt örneğinden veya havuzdan (neredeyse) birebir kopyalanmış cümle.",
+  pasif_kalip: "1. tekil şahıs ve aktif olması gerekirken pasif/edilgen anlatım kullanılmış.",
+  yeterli_dayanaksiz: "Gerçek bir ürün, firma veya amaca bağlanmamış; fazlasıyla muğlak ifade.",
+  firma_ek_hatasi: "Firma adına gelen çekim eki hatalı yazılmış (örn. Oteli'den yerine Oteli'nden).",
+  vurgu_fazlasi: "Manipülatif kategorisinde vurgu ifadesi tek kullanım yerine birden çok kez tekrarlanmış.",
+  sizinti: "Gizlenmesi gereken kalem adı veya kategorisi metinde açıkça kullanılmış.",
+  uzunluk: "Belirlenen toleranslı karakter/kelime uzunluk aralığının dışına çıkılmış.",
+  urun_detay_kopya: "Ürün adı fiş/fatura detayından gereksiz ve birebir kopyalanmış.",
+  tutar_sizinti: "Metin içine istenmeyen tutar veya sayısal veri sızmış (AI üretimi hariç).",
+  yeterli_halusinasyon: "Fişte/bağlamda yer almayan hayali bir tema veya detay uydurulmuş.",
+  kapanis_eksik: "Metin sonu, havuzda tanımlı beklenen AI kapanış kalıplarından biriyle bitmemiş.",
+};
+
+const imax = Math.max(...Object.values(U.ihlal));
+document.getElementById('ihlal').innerHTML = Object.entries(U.ihlal).map(([t,c]) =>
+  '<div class="ihlal-blok"><div class="row"><span class="name">' + t + '</span><span class="bar" style="background:none">' +
+  '<i class="seg" style="width:' + (100*c/imax) + '%;background:var(--s2)" data-t="' + t + ': ' + nf(c) +
+  ' ihlal"></i><span class="pct" style="color:var(--muted)">' + nf(c) + '</span></span></div>' +
+  (IHLAL_ACIKLAMA[t] ? '<p class="ihlal-aciklama">' + IHLAL_ACIKLAMA[t] + '</p>' : '') + '</div>').join('');
+document.querySelectorAll('#ihlal .seg').forEach(n => bindTip(n, n.dataset.t));
+
+document.getElementById('katIhlal').innerHTML = K.map((k,i) => {
+  const [a,b] = U.kat_ihlal[k];
+  return '<div class="row"><span class="name">' + k + '</span><span class="bar" style="background:none">' +
+    '<i class="seg" style="width:' + (100*(a/b)/0.20) + '%;background:var(' + SER[i] + ')" data-t="' +
+    k + ': ' + nf(a) + ' / ' + nf(b) + '"></i><span class="pct" style="color:var(--muted)">' +
+    pf(a/b,1) + '</span></span></div>';
+}).join('');
+document.querySelectorAll('#katIhlal .seg').forEach(n => bindTip(n, n.dataset.t));
+
+/* kategori x onay */
+const ONAY = ['onaylandi','gozden_gecirilecek','onaylanmadi'];
+const ONAYAD = {onaylandi:'onaylandı', gozden_gecirilecek:'gözden geçirilecek', onaylanmadi:'onaylanmadı'};
+document.getElementById('capraz').innerHTML = K.map(k => {
+  const c = D.capraz[k], t = ONAY.reduce((a,o) => a + c[o], 0);
+  const segs = ONAY.map((o,i) => {
+    const v = c[o]/t;
+    return '<i class="seg" style="width:' + (100*v) + '%;background:var(--s' + (i+1) + ')" data-t="' +
+      k + ' / ' + ONAYAD[o] + ': ' + nf(c[o]) + ' (' + pf(v,1) + ')"></i>';
+  }).join('');
+  return '<div class="row"><span class="name">' + k + '</span><span class="bar">' + segs + '</span></div>';
+}).join('');
+document.querySelectorAll('#capraz .seg').forEach(n => bindTip(n, n.dataset.t));
+
+/* tablo */
+let h = '<thead><tr><th>Kategori</th><th>n</th><th>benzersiz</th><th>dist-1</th><th>dist-2</th>' +
+        '<th>dist-1 eşit sayıda</th><th>dist-2 eşit sayıda</th><th>ort krk</th><th>medyan</th><th>min</th><th>max</th>' +
+        '<th>büyük harf</th><th>son nokta</th><th>kalan ihlal</th></tr></thead><tbody>';
+K.forEach(k => {
+  const o = D.ozet[k], e = D.esit[k], d = D.dizgi[k], [ia,ib] = D.uretim.kat_ihlal[k];
+  h += '<tr><td class="lbl">' + k + '</td><td>' + nf(o.n) + '</td><td>' + nf(o.benzersiz) + '</td><td>' +
+    nd(o.d1) + '</td><td>' + nd(o.d2) + '</td><td>' + nd(e.d1) + '</td><td>' + nd(e.d2) + '</td><td>' +
+    nd(o.ort_krk,1) + '</td><td>' + o.med_krk + '</td><td>' + o.min_krk + '</td><td>' + o.max_krk +
+    '</td><td>' + pf(d.buyuk,1) + '</td><td>' + pf(d.nokta,1) + '</td><td>' + pf(ia/ib,1) + '</td></tr>';
+});
+h += '</tbody>';
+document.getElementById('tbl').innerHTML = h;
+</script>

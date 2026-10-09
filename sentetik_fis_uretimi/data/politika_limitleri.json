@@ -1,0 +1,42 @@
+{
+  "surum": 1,
+  "limit_tabani": "birim_fiyat",
+  "_not": [
+    "Sirket harcama politikasi: kategori basina ust birim fiyat limiti (KDV haric, TL).",
+    "Asilirsa validators.kalem_limit_asimi_mi -> 'limit_asimi' etiketi uretir.",
+    "KURAL: limit, o kategorinin URETTIGI en yuksek birim fiyatin (taskin dahil) USTUNDE",
+    "olmali; altina inerse anomali enjekte edilmemis TEMIZ faturalar da limit_asimi alir.",
+    "field_generator import aninda bunu denetler ve ihlali ekrana yazar.",
+    "birim_limitleri: 'kategori|birim' anahtari kategori limitini EZER (fiyat tablosundaki",
+    "(kategori,birim) katmaninin karsiligi). Danismanlikta saatlik ile aylik isin tek",
+    "limitle yonetilememesi bu yuzden ayrilmistir."
+  ],
+
+  "kategori_limitleri": {
+    "yemek_hizmeti": 3000,
+    "konaklama": 20000,
+    "ulasim_bireysel": 5000,
+    "temel_gida": 1500,
+    "ulasim_hizmeti": 30000,
+    "ofis_sarf_malzeme": 8000,
+    "ofis_mobilya": 30000,
+    "teknoloji_ekipman": 60000,
+    "yazilim_lisans": 40000,
+    "danismanlik": 150000,
+    "temizlik": 800
+  },
+
+  "birim_limitleri": {
+    "ulasim_hizmeti|Km": 5000,
+    "ulasim_hizmeti|Ton": 50000,
+    "ulasim_hizmeti|Ay": 85000,
+    "ulasim_hizmeti|Saat": 4500,
+    "ulasim_bireysel|Km": 3000,
+    "ulasim_bireysel|Saat": 2000,
+    "konaklama|Saat": 4500,
+    "danismanlik|Saat": 8000,
+    "danismanlik|Adet": 75000,
+    "yazilim_lisans|Ay": 8000,
+    "yazilim_lisans|Adet": 25000
+  }
+}

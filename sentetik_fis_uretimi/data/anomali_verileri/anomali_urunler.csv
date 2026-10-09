@@ -1,0 +1,80 @@
+kategori,urun_adi,makul_is_kollari
+alkol,Şişe Şarap (75cl),restoran;otel;market;organizasyon
+alkol,Kadeh Şarap,restoran;otel;organizasyon
+alkol,Fıçı Bira 50cl,restoran;otel;organizasyon
+alkol,Şişe Bira 33cl,restoran;otel;market;organizasyon
+alkol,İthal Bira,restoran;otel;market;organizasyon
+alkol,Kokteyl,restoran;otel;organizasyon
+alkol,İmza Kokteyl,restoran;otel;organizasyon
+alkol,Rakı (35cl),restoran;otel;market;organizasyon
+alkol,Rakı (70cl),restoran;otel;market;organizasyon
+alkol,Tek Rakı,restoran;otel;organizasyon
+alkol,Duble Rakı,restoran;otel;organizasyon
+alkol,Votka Enerji,restoran;otel;organizasyon
+alkol,Tekila Shot,restoran;otel;organizasyon
+alkol,Cin Tonik,restoran;otel;organizasyon
+alkol,Viski (Single Malt),restoran;otel;market;organizasyon
+alkol,Konyak,restoran;otel;market;organizasyon
+alkol,Şampanya,restoran;otel;market;organizasyon
+alkol,Likör,restoran;otel;market;organizasyon
+alkol,Sangria Sürahi,restoran;otel;organizasyon
+alkol,Mantar Parası (Şişe Açım Ücreti),restoran;otel;organizasyon
+alkol,Alkollü İçecek Servisi,restoran;otel;organizasyon
+alkol,Bira Tabağı / Çerezi,restoran;otel;organizasyon
+eglence,Organizasyon Bedeli,organizasyon;otel
+eglence,Sinema Bileti,
+eglence,Tiyatro Bileti,
+eglence,Konser Bileti,
+eglence,Festival Giriş Bileti,
+eglence,Etkinlik Katılım Payı,organizasyon;otel
+eglence,Canlı Müzik Ücreti,organizasyon;otel;restoran
+eglence,Giriş Ücreti (Cover Charge),organizasyon;otel;restoran
+eglence,VIP Loca Kiralama,organizasyon;otel;restoran
+eglence,Bistro Stand Kiralama,organizasyon;otel;restoran
+eglence,DJ Performans Bedeli,organizasyon;otel;restoran
+eglence,Karaoke Odası Kiralama,organizasyon;otel;restoran
+eglence,Bowling Oyun Ücreti,
+eglence,Bilardo (Saatlik Ücret),
+eglence,Lunapark Bilet/Jeton,
+eglence,Müze Giriş Bileti,
+eglence,Tema Park Giriş Ücreti,
+eglence,Kaçış Odası (Escape Room) Katılım,
+eglence,Go-Kart Ücreti,
+eglence,Maç Bileti,
+eglence,Stadyum Loca Ücreti,
+tutun_urunleri,Sigara,market;ulasim_saglayici
+tutun_urunleri,İthal Sigara,market;ulasim_saglayici
+tutun_urunleri,Sarma Tütün (50gr),market;ulasim_saglayici
+tutun_urunleri,Puro,market;ulasim_saglayici
+tutun_urunleri,Küba Purosu,market;ulasim_saglayici
+tutun_urunleri,Sigarillo,market;ulasim_saglayici
+tutun_urunleri,Nargile (Standart),restoran;otel
+tutun_urunleri,Nargile (Özel Karışım),restoran;otel
+tutun_urunleri,Nargile Köz Değişimi,restoran;otel
+tutun_urunleri,Elektronik Sigara Cihazı,market;ulasim_saglayici
+tutun_urunleri,Elektronik Sigara Likiti (30ml),market;ulasim_saglayici
+tutun_urunleri,Kullan At Elektronik Sigara (Puff),market;ulasim_saglayici
+tutun_urunleri,Isıtılan Tütün Ürünü (Kartuş),market;ulasim_saglayici
+tutun_urunleri,Sigara Kağıdı ve Filtresi,market;ulasim_saglayici
+tutun_urunleri,Pipo Tütünü,market;ulasim_saglayici
+tutun_urunleri,Çakmak / Kibrit,market;ulasim_saglayici;restoran;otel
+tutun_urunleri,Çakmak Gazı,market;ulasim_saglayici
+tutun_urunleri,Küllük,market
+kumar,Milli Piyango Bileti (Tam),market;ulasim_saglayici
+kumar,Milli Piyango Bileti (Yarım),market;ulasim_saglayici
+kumar,Milli Piyango Bileti (Çeyrek),market;ulasim_saglayici
+kumar,Kazı Kazan Kartı,market;ulasim_saglayici
+kumar,Sayısal Loto Kupon Bedeli,market;ulasim_saglayici
+kumar,Süper Loto Kuponu,market;ulasim_saglayici
+kumar,Şans Topu Kuponu,market;ulasim_saglayici
+kumar,On Numara Kuponu,market;ulasim_saglayici
+kumar,İddaa Kupon Bedeli,market;ulasim_saglayici
+kumar,Spor Toto Katılım Bedeli,market;ulasim_saglayici
+kumar,Ganyan Kuponu / At Yarışı,market;ulasim_saglayici
+kumar,Casino Çip Alımı,
+kumar,Masa Oyunu Katılım Bedeli,
+kumar,Slot Makinesi Jetonu,
+kumar,Tombala Kartı,
+kumar,Şans Oyunları Bakiye Yükleme,market;ulasim_saglayici
+kumar,Turnuva Katılım Ücreti,
+kumar,Müşterek Bahis Katılımı,

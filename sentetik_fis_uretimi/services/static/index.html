@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiş Anomali Tespiti</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="page">
+  <header class="page-header">
+    <h1>Fiş Anomali Tespiti</h1>
+    <p>Bir klasör seçin (girdi+etiket çiftlerini içeren), bölme seçin, fiş arayın ya da filtreleyin.</p>
+  </header>
+
+  <main class="panels">
+    <section class="card panel-kaynak">
+      <h2>Kaynak</h2>
+
+      <label class="action-btn" id="upload-btn">
+        Klasör Seç
+        <input type="file" id="folder-input" webkitdirectory directory multiple accept=".json" hidden>
+      </label>
+
+      <p class="source-status" id="source-status">Henüz bir klasör seçilmedi.</p>
+
+      <div class="split-tabs" id="split-tabs"></div>
+
+      <div class="field-block">
+        <label class="field-label" for="search-input">Fiş no ya da firma adı</label>
+        <input type="text" id="search-input" class="text-input" placeholder="örn. 30, ya da firma adı" disabled>
+      </div>
+
+      <div class="field-block">
+        <button class="filter-toggle" id="anomaly-filter-toggle" disabled>
+          <span>Anomali türüne göre filtrele</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="filter-options" id="anomaly-filter-options" hidden></div>
+      </div>
+    </section>
+
+    <section class="card panel-sonuclar">
+      <h2>Sonuçlar</h2>
+      <div class="result-list" id="result-list">
+        <p class="empty-hint">Ara ya da filtrele.</p>
+      </div>
+    </section>
+
+    <section class="card panel-dogrulama">
+      <h2>Doğrulama</h2>
+      <div class="result" id="result">
+        <p class="empty-hint">Sonuçlardan bir kayıt seçin.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

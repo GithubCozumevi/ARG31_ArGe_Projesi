@@ -1,0 +1,374 @@
+kategori,urun_adi,alt_tipler
+ana_yemekler_et,Dana Bonfile,
+ana_yemekler_et,Dana Lokum,
+ana_yemekler_et,Dana Şiş,
+ana_yemekler_et,Dana Kaburga,
+ana_yemekler_et,Kuzu Tandır,
+ana_yemekler_et,Tandır Kebabı,
+ana_yemekler_et,Tas Kebabı,
+ana_yemekler_et,Hünkar Beğendi,
+ana_yemekler_et,Orman Kebabı,
+ana_yemekler_et,Etli Güveç,
+ana_yemekler_et,Kiremitte Köfte,
+ana_yemekler_et,İnegöl Köfte,
+ana_yemekler_et,Tekirdağ Köfte,
+ana_yemekler_et,Pideli Köfte,
+ana_yemekler_et,Dalyan Köfte,
+ana_yemekler_et,Kasap Köfte,
+ana_yemekler_et,Çiftlik Köfte,
+ana_yemekler_et,Dana Kavurma,
+ana_yemekler_et,Fırın Kebabı,
+ana_yemekler_et,Yoğurtlu Kebap,
+ana_yemekler_et,Tepsi Kebabı,
+ana_yemekler_et,Kağıt Kebabı,
+ana_yemekler_et,Çoban Kavurma,
+ana_yemekler_et,Dana Biftek,
+ana_yemekler_et,Etli Pilav,
+ana_yemekler_tavuk,Tavuk Pirzola,
+ana_yemekler_tavuk,Tavuk Kanat,
+ana_yemekler_tavuk,Tavuk Bonfile Izgara,
+ana_yemekler_tavuk,Tavuk Külbastı,
+ana_yemekler_tavuk,Tavuk Fajita,
+ana_yemekler_tavuk,Tavuk Güveç,
+ana_yemekler_tavuk,Tereyağlı Tavuk,
+ana_yemekler_tavuk,Mantar Soslu Tavuk,
+ana_yemekler_tavuk,Barbekü Soslu Tavuk,
+ana_yemekler_tavuk,Acılı Tavuk,
+ana_yemekler_tavuk,Tavuk Wrap,
+ana_yemekler_tavuk,Tavuk Dürüm,
+ana_yemekler_tavuk,Tavuk Tantuni,
+ana_yemekler_tavuk,Piliç Izgara,
+ana_yemekler_tavuk,Kremalı Tavuk,
+doner_kebap,Döner Sandviç,donerci
+doner_kebap,Lavaş Tavuk,donerci
+doner_kebap,Lavaş Et,donerci
+doner_kebap,Tantuni,tantunici
+doner_kebap,Tavuk Tantuni,tantunici
+doner_kebap,Et Tantuni,tantunici
+doner_kebap,Et Döner Porsiyon,donerci
+doner_kebap,Tavuk Döner Porsiyon,donerci
+doner_kebap,Hatay soslu dürüm M,donerci
+doner_kebap,Hatay soslu dürüm L,donerci
+doner_kebap,Hatay soslu dürüm XL,donerci
+doner_kebap,Porsiyon İskender,kebapci
+doner_kebap,Adana Kebap,kebapci
+doner_kebap,Urfa Kebap,kebapci
+doner_kebap,Beyti Kebap,kebapci
+doner_kebap,Ciğer Şiş,cigerci
+doner_kebap,Kuzu Şiş,kebapci
+doner_kebap,Patlıcan Kebabı,kebapci
+pide_lahmacun,Kuşbaşı Kaşarlı Pide,pideci_lahmacunci
+pide_lahmacun,Kavurmalı Pide,pideci_lahmacunci
+pide_lahmacun,Pastırmalı Pide,pideci_lahmacunci
+pide_lahmacun,Ispanaklı Pide,pideci_lahmacunci
+pide_lahmacun,Karadeniz Pidesi,pideci_lahmacunci
+pide_lahmacun,Kapalı Pide,pideci_lahmacunci
+pide_lahmacun,Karışık Lahmacun,pideci_lahmacunci
+pide_lahmacun,Kaşarlı Lahmacun,pideci_lahmacunci
+pide_lahmacun,Peynirli Gözleme,pideci_lahmacunci
+pide_lahmacun,Kıymalı Gözleme,pideci_lahmacunci
+pide_lahmacun,Ispanaklı Gözleme,pideci_lahmacunci
+pide_lahmacun,Kaşarlı Gözleme,pideci_lahmacunci
+pide_lahmacun,Patatesli Gözleme,pideci_lahmacunci
+pide_lahmacun,Sucuklu Gözleme,pideci_lahmacunci
+pide_lahmacun,Lahmacun,pideci_lahmacunci
+pide_lahmacun,Kıymalı Pide,pideci_lahmacunci
+pide_lahmacun,Etli Ekmek,pideci_lahmacunci
+pide_lahmacun,Peynirli Pide,pideci_lahmacunci
+pide_lahmacun,Yumurtalı Pide,pideci_lahmacunci
+pide_lahmacun,Kuşbaşılı Pide,pideci_lahmacunci
+pizza,Margherita Pizza,pizzaci
+pizza,Karışık Pizza,pizzaci
+pizza,Pepperoni Pizza,pizzaci
+pizza,Sebzeli Pizza,pizzaci
+pizza,BBQ Tavuklu Pizza,pizzaci
+pizza,Bufalo Tavuklu Pizza,pizzaci
+pizza,Trüflü Mantarlı Pizza,pizzaci
+pizza,Sucuk Kaşarlı Pizza,pizzaci
+pizza,Akdeniz Pizza,pizzaci
+pizza,Lahmacun Pizza,pizzaci
+pizza,Kalzone,pizzaci
+pizza,Mini Pizza,pizzaci
+pizza,Pizza Ekmeği,pizzaci
+pizza,Vejetaryen Pizza,pizzaci
+pizza,Dört Peynirli Pizza,pizzaci
+pizza,Ton Balıklı Pizza,pizzaci
+pizza,Tavuklu Pizza,pizzaci
+pizza,Mantarlı Pizza,pizzaci
+pizza,Sucuklu Pizza,pizzaci
+burger,Klasik Hamburger,burgerci
+burger,Cheeseburger,burgerci
+burger,Double Cheeseburger,burgerci
+burger,Smash Burger 90 gr,burgerci
+burger,Smash Burger 180 gr Çift Köfte,burgerci
+burger,Smash Burger Cheddarlı,burgerci
+burger,BBQ Chicken Burger,burgerci
+burger,Atom Soslu Chicken Burger,burgerci
+burger,Dynamite Soslu Chicken Burger,burgerci
+burger,Crispy Chicken Burger,burgerci
+burger,Tavuk Burger,burgerci
+burger,Mantarlı Burger,burgerci
+burger,Cheddar Burger,burgerci
+burger,Barbekü Soslu Burger,burgerci
+burger,Vejetaryen Burger,burgerci
+burger,Patates Kızartması,burgerci
+burger,Baharatlı Patates,burgerci
+burger,Milkshake,burgerci
+burger,Islak Hamburger,burgerci
+burger,Mini Burger,burgerci
+burger,Et Burger,burgerci
+burger,Mega Burger,burgerci
+burger,Tavuk Nugget,burgerci
+burger,Soğan Halkası,burgerci
+burger,Çıtır Patates,burgerci
+burger,Hot Dog,burgerci
+tost_sandvic,Karışık Tost,tostcu
+tost_sandvic,Kavurmalı Tost,tostcu
+tost_sandvic,Bazlama Tost,tostcu
+tost_sandvic,Tavuk Sandviç,tostcu
+tost_sandvic,Et Sandviç,tostcu
+tost_sandvic,Kaşarlı Tost,tostcu
+tost_sandvic,Sucuklu Tost,tostcu
+tost_sandvic,Ayvalık Tostu,tostcu
+tost_sandvic,Kumru,tostcu
+tost_sandvic,Sucuk Ekmek,tostcu
+borek,Kıymalı Börek,borekci
+borek,Peynirli Börek,borekci
+borek,Ispanaklı Börek,borekci
+borek,Patatesli Börek,borekci
+borek,Sigara Böreği Porsiyon,borekci
+borek,Su Böreği Porsiyon,borekci
+borek,Talaş Böreği,borekci
+borek,Kol Böreği,borekci
+borek,Puf Börek,borekci
+borek,Çiğ Börek,borekci
+borek,Poğaça,borekci
+borek,Açma,borekci
+borek,Simit,borekci
+borek,Börek Tabağı,borekci
+borek,Demleme Çay,borekci
+kokorec,Kokoreç Yarım Ekmek,kokorecci
+kokorec,Kokoreç Çeyrek Ekmek,kokorecci
+kokorec,Kokoreç Porsiyon,kokorecci
+kokorec,Kokoreç Dürüm,kokorecci
+kokorec,Midye Dolma (10 Adet),kokorecci;balikci
+kokorec,Midye Tava Porsiyon,kokorecci;balikci
+kokorec,Ciğer Dürüm,cigerci
+kokorec,Turşu Suyu,kokorecci
+kokorec,Ayran Bardak,kokorecci
+cigkofte,Çiğ Köfte Porsiyon,cigkofteci
+cigkofte,Çiğ Köfte Dürüm,cigkofteci
+cigkofte,Sarma Çiğ Köfte,cigkofteci
+cigkofte,Acılı Çiğ Köfte Porsiyon,cigkofteci
+cigkofte,Domatesli Çiğ Köfte,cigkofteci
+cigkofte,1 Kg Aile Boyu Çiğ Köfte,cigkofteci
+cigkofte,500 gr Yarım Aile Boyu Çiğ Köfte,cigkofteci
+cigkofte,250 gr Çiğ Köfte Paketi,cigkofteci
+cigkofte,Çiğ Köfte Tabağı,cigkofteci
+cigkofte,Mercimek Köftesi Porsiyon,cigkofteci
+cigkofte,Ayran,cigkofteci
+cigkofte,Büyük Boy Ayran,cigkofteci
+cigkofte,Şalgam Suyu,cigkofteci
+cigkofte,Acılı Şalgam Suyu,cigkofteci
+cigkofte,Limonata,cigkofteci
+cigkofte,Turşu Tabağı,cigkofteci
+cigkofte,Marul Roka Tabağı,cigkofteci
+cigkofte,Közlenmiş Biber Sos,cigkofteci
+balik,Levrek Izgara,balikci
+balik,Çupra Izgara,balikci
+balik,Somon Izgara,balikci
+balik,Palamut Izgara,balikci
+balik,Lüfer Izgara,balikci
+balik,Mezgit Tava,balikci
+balik,İstavrit Tava,balikci
+balik,Hamsi Tava,balikci
+balik,Barbunya Tava,balikci
+balik,Sardalya Izgara,balikci
+balik,Çipura Buğulama,balikci
+balik,Midye Dolma,kokorecci;balikci
+balik,Midye Tava,kokorecci;balikci
+balik,Ahtapot Salatası,balikci
+balik,Deniz Mahsulleri Tabağı,balikci
+balik,Balık Ekmek,balikci
+balik,Levrek Buğulama,balikci
+uzakdogu,California Roll,uzakdogu
+uzakdogu,Somon Sushi,uzakdogu
+uzakdogu,Maki Roll,uzakdogu
+uzakdogu,Sashimi Tabağı,uzakdogu
+uzakdogu,Karışık Sushi Tabağı,uzakdogu
+uzakdogu,Ebi Tempura Roll,uzakdogu
+uzakdogu,Miso Çorbası,uzakdogu
+uzakdogu,Wonton Çorbası,uzakdogu
+uzakdogu,Edamame,uzakdogu
+uzakdogu,Spring Roll,uzakdogu
+uzakdogu,Dim Sum Tabağı,uzakdogu
+uzakdogu,Kung Pao Tavuk,uzakdogu
+uzakdogu,Chow Mein Noodle,uzakdogu
+uzakdogu,Pad Thai,uzakdogu
+uzakdogu,Teriyaki Tavuk,uzakdogu
+uzakdogu,Yakisoba,uzakdogu
+uzakdogu,Karidesli Noodle,uzakdogu
+corbalar,Düğün Çorbası,corbaci
+corbalar,Bamya Çorbası,corbaci
+corbalar,Mantar Çorbası,corbaci
+corbalar,Sebze Çorbası,corbaci
+corbalar,Balık Çorbası,corbaci
+corbalar,Tavuk Çorbası,corbaci
+corbalar,Krema Mantar Çorbası,corbaci
+corbalar,Arabaşı Çorbası,corbaci
+corbalar,Yoğurt Çorbası,corbaci
+corbalar,Toyga Çorbası,corbaci
+corbalar,Şehriye Çorbası,corbaci
+corbalar,Köz Domates Çorbası,corbaci
+corbalar,Ispanak Çorbası,corbaci
+corbalar,Kabak Çorbası,corbaci
+corbalar,Nohut Çorbası,corbaci
+ara_sicaklar_mezeler,Kaşarlı Mantar,
+ara_sicaklar_mezeler,Mantar Sote,
+ara_sicaklar_mezeler,Fırın Patates,
+ara_sicaklar_mezeler,Patlıcan Salatası,
+ara_sicaklar_mezeler,Piyaz,
+ara_sicaklar_mezeler,Atom,
+ara_sicaklar_mezeler,Cacık,
+ara_sicaklar_mezeler,Muhammara,
+ara_sicaklar_mezeler,Fava,
+ara_sicaklar_mezeler,Zeytinyağlı Yaprak Sarma,
+ara_sicaklar_mezeler,Kalamar Tava,
+ara_sicaklar_mezeler,Karides Güveç,
+ara_sicaklar_mezeler,Karides Tava,
+ara_sicaklar_mezeler,Peynir Tabağı,
+ara_sicaklar_mezeler,Akdeniz Salata,
+ara_sicaklar_mezeler,Roka Salatası,
+ara_sicaklar_mezeler,Yeşil Salata,
+ara_sicaklar_mezeler,Ezme Salata,
+ara_sicaklar_mezeler,Patlıcan Ezmesi,
+ara_sicaklar_mezeler,Köz Biber,
+tatlilar,Sütlaç,tatlici
+tatlilar,Soğuk Baklava,tatlici
+tatlilar,Havuç Dilimi Baklava,tatlici
+tatlilar,Bülbül Yuvası,tatlici
+tatlilar,Şöbiyet,tatlici
+tatlilar,Tulumba Tatlısı,tatlici
+tatlilar,Lokma Tatlısı,tatlici
+tatlilar,Aşure,tatlici
+tatlilar,Revani,tatlici
+tatlilar,İrmik Helvası,tatlici
+tatlilar,Un Helvası,tatlici
+tatlilar,Mozaik Pasta,tatlici
+tatlilar,Tiramisu,tatlici
+tatlilar,Brownie,tatlici
+tatlilar,Çikolatalı Sufle,tatlici
+tatlilar,Dondurmalı İrmik Helvası,tatlici
+tatlilar,Elmalı Turta,tatlici
+tatlilar,San Sebastian Cheesecake,tatlici
+tatlilar,Frambuazlı Cheesecake,tatlici
+tatlilar,Çikolatalı Pasta,tatlici
+pastane_tatli,Yaş Pasta Dilimi,pastane
+pastane_tatli,Poğaça,pastane
+pastane_tatli,Açma,pastane
+pastane_tatli,Su Böreği Porsiyon,pastane
+pastane_tatli,Kurabiye Kilo,pastane
+pastane_tatli,Ekler,pastane
+pastane_tatli,Profiterol,pastane
+pastane_tatli,Cheesecake Dilim,pastane
+pastane_tatli,Magnolia,pastane
+pastane_tatli,Kadayıf Porsiyon,pastane
+pastane_tatli,Milföy Tatlısı,pastane
+pastane_tatli,Doğum Günü Pastası,pastane
+icecekler,Fanta,
+icecekler,Sprite,
+icecekler,Gazoz,
+icecekler,Portakal Suyu,
+icecekler,Vişne Suyu,
+icecekler,Şeftali Suyu,
+icecekler,Karışık Meyve Suyu,
+icecekler,Elma Suyu,
+icecekler,Nar Suyu,
+icecekler,Taze Sıkma Portakal,
+icecekler,Cold Brew,
+icecekler,Espresso,
+icecekler,Double Espresso,
+icecekler,Americano,
+icecekler,Latte,
+icecekler,Cappuccino,
+icecekler,Mocha,
+icecekler,Sıcak Çikolata,
+icecekler,Bitki Çayı,
+icecekler,Yeşil Çay,
+hizmet_ve_ekstralar,Ekstra Kaşar,
+hizmet_ve_ekstralar,Ekstra Peynir,
+hizmet_ve_ekstralar,Ekstra Et,
+hizmet_ve_ekstralar,Ekstra Tavuk,
+hizmet_ve_ekstralar,Ekstra Köfte,
+hizmet_ve_ekstralar,Ekstra Patates,
+hizmet_ve_ekstralar,Ekstra İçecek,
+hizmet_ve_ekstralar,Masa Servisi,
+ev_yemekleri,Kuru Fasulye,
+ev_yemekleri,Etli Kuru Fasulye,
+ev_yemekleri,Nohut Yemeği,
+ev_yemekleri,Zeytinyağlı Dolma,
+ev_yemekleri,Etli Yaprak Sarma,
+ev_yemekleri,Karnıyarık,
+ev_yemekleri,İmam Bayıldı,
+ev_yemekleri,Patlıcan Musakka,
+ev_yemekleri,Etli Bamya,
+ev_yemekleri,Türlü,
+ev_yemekleri,Nohutlu Pirinç Pilavı,
+ev_yemekleri,Bulgur Pilavı,
+tavukcu,Tavuk Kanat,tavukcu
+tavukcu,Acılı Kanat,tavukcu
+tavukcu,Bal Hardal Soslu Kanat,tavukcu
+tavukcu,Tavuk But,tavukcu
+tavukcu,Baharatlı But,tavukcu
+tavukcu,Çıtır But,tavukcu
+tavukcu,Tavuk Şiş,tavukcu
+tavukcu,Yarım Tavuk Izgara,tavukcu
+tavukcu,Bütün Tavuk Izgara,tavukcu
+tavukcu,Piliç Izgara,tavukcu
+tavukcu,Köy Tavuğu Izgara,tavukcu
+tavukcu,Kanat Tabağı (Karışık),tavukcu
+tavukcu,Schinitzel,tavukcu
+corbalar,İşkembe Çorbası,corbaci
+corbalar,Kelle Paça Çorbası,corbaci
+corbalar,Beyran Çorbası,corbaci
+tost_sandvic,Patso,tostcu
+tost_sandvic,Patsosis,tostcu
+cafe_icecekleri,Ice Americano,cafe
+cafe_icecekleri,Iced Latte,cafe
+cafe_icecekleri,Flat White,cafe
+cafe_icecekleri,Cortado,cafe
+cafe_icecekleri,Chai Tea Latte,cafe
+cafe_icecekleri,Caramel Macchiato,cafe
+cafe_icecekleri,Filtre Kahve,cafe
+cafe_icecekleri,Frappuccino,cafe
+cafe_icecekleri,Vanilyalı Latte,cafe
+cafe_icecekleri,Affogato,cafe
+cafe_icecekleri,White Mocha,cafe
+cafe_icecekleri,Karamelli Latte,cafe
+cafe_atistirmaliklari,Hindi Füme Sandviç,cafe
+cafe_atistirmaliklari,Üç Peynirli Sandviç,cafe
+cafe_atistirmaliklari,Somonlu Sandviç,cafe
+cafe_atistirmaliklari,Avokadolu Sandviç,cafe
+cafe_atistirmaliklari,Karides Sandviç,cafe
+cafe_atistirmaliklari,Peynirli Bagel,cafe
+cafe_atistirmaliklari,Füme Somon Bagel,cafe
+cafe_atistirmaliklari,Tavuklu Wrap,cafe
+cafe_tatlilari,Mozaik Pasta,cafe
+cafe_tatlilari,San Sebastian Cheesecake,cafe
+cafe_tatlilari,Red Velvet Dilim,cafe
+cafe_tatlilari,Brownie,cafe
+cafe_tatlilari,Limon Tart,cafe
+cafe_tatlilari,Carrot Cake Dilim,cafe
+cafe_tatlilari,Tiramisu Kase,cafe
+steakhouse_etler,Antrikot Steak,steakhouse
+steakhouse_etler,Bonfile Steak,steakhouse
+steakhouse_etler,T-Bone Steak,steakhouse
+steakhouse_etler,Tomahawk Steak,steakhouse
+steakhouse_etler,Ribeye Steak,steakhouse
+steakhouse_etler,Kuzu Pirzola,steakhouse
+steakhouse_etler,Dana Pirzola,steakhouse
+steakhouse_etler,Sirloin Steak,steakhouse
+steakhouse_etler,Filetto Steak,steakhouse
+steakhouse_etler,Prime Rib,steakhouse
+steakhouse_etler,New York Strip,steakhouse
+steakhouse_etler,Kuzu Fransız Pirzola,steakhouse

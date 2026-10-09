@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>masrafAI - Sentetik Fiş (e-Arşiv)</title>
+<!--
+  İKİNCİ FİŞ TİPİ (2026-07-31). fis_sablon_1.html ile DÖNÜŞÜMLÜ kullanılır:
+  tek şablonla üretilen 25k fişin hepsi aynı görününce model fiş tipini değil
+  tek bir düzeni öğreniyor. Şablon seçimi fis_uret.py:sablon_sec'te kayit_id'den
+  DETERMİNİSTİK -- aynı fatura her koşuda aynı şablonu alır (resume'de fiş
+  değişmesin).
+
+  Aritmetik fis_sablon_1.html ile AYNI olmak ZORUNDA (fis_uret.py:kalem_gosterimi):
+  fiyat sütunu KDV DAHİL brüt = satir_toplam. İki şablon iki farklı aritmetik
+  gösterirse aşağı akıştaki model tutarsızlığı fiş tipiyle karıştırır.
+
+  .receipt-container sınıfı ZORUNLU: fis_uret.py ekran görüntüsünü bu seçiciyle
+  alıyor (fis_sablon_1.html ile aynı seçici).
+-->
+<style>
+    body { background-color: #f0f0f0; display: flex; justify-content: center; padding: 20px; font-family: Arial, sans-serif; }
+    .receipt { width: 340px; background-color: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); color: #000; font-size: 12px; line-height: 1.4; }
+    .center { text-align: center; }
+    .bold { font-weight: bold; }
+    .row { display: flex; justify-content: space-between; }
+    .solid { border-top: 1px solid #000; margin: 6px 0; }
+    .address-space { height: 24px; }
+
+    .header-grid { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px; }
+    .right-header { text-align: right; font-size: 11px; }
+
+    .table-header { display: flex; justify-content: space-between; font-weight: bold; border-bottom: 1px solid #000; padding-bottom: 2px; margin-bottom: 4px; }
+
+    /* Kalem satırı: ad esner, KDV ve tutar sabit genişlikte kalır ki uzun
+       ürün adları tutarı sıkıştırmasın. */
+    .item-name { flex: 1; padding-right: 6px; word-wrap: break-word; }
+    .item-kdv { width: 34px; text-align: center; }
+    .item-price { width: 90px; text-align: right; }
+    .item-detail { color: #333; font-size: 11px; }
+
+    /* KDV tablosu: başlık ile veri satırı AYNI genişlikleri kullanmalı,
+       yoksa sütunlar kayıyor ('KDV Oranı' başlığı 34px'e sığmıyordu). */
+    .kdv-oran { width: 70px; }
+    .kdv-tutar { flex: 1; text-align: center; }
+    .kdv-toplam { width: 100px; text-align: right; }
+</style>
+</head>
+<body>
+    <div class="receipt receipt-container">
+        <div class="center bold" style="font-size: 14px;">{{ satici_unvan }}</div>
+        {% if satici_sahis_adi %}<div class="center">{{ satici_sahis_adi }}</div>{% endif %}
+        <div class="center">{{ adres }}</div>
+        <div class="center">{{ satici_kimlik_etiketi }}: {{ satici_vkn }}</div>
+
+        <div class="header-grid">
+            <div class="right-header">
+                <span class="bold">E-ARŞİV FATURA</span><br>GMU 507 Tebliği'ne uygundur.
+            </div>
+        </div>
+
+        <div class="solid"></div>
+        <div class="row"><span>Tarih/Saat</span><span>{{ fatura_tarihi_tr }} {{ saat }}</span></div>
+        <div class="row"><span>Belge No</span><span>{{ fatura_no }}</span></div>
+        <div class="solid"></div>
+
+        <!-- Kalemler -->
+        {% for kalem in kalemler %}
+        <div style="margin-bottom: 8px;">
+            <!-- Birim adı yalnız BAŞTA: "1 Adet x 396,68 TL/Adet" biçiminde birim
+                 iki kez geçiyordu. Sondaki "/Adet" gerçek fişte birim fiyat
+                 notasyonu olarak kullanılır ama baştaki miktarla birlikte
+                 gereksiz tekrar oluyor. -->
+            <div class="item-detail">{{ kalem.miktar }} {{ kalem.birim }} x {{ kalem.brut_birim | tutar }} TL</div>
+            <div class="row">
+                <span class="item-name">{{ kalem.aciklama }}</span>
+                <span class="item-kdv">%{{ kalem.kdv_orani | int }}</span>
+                <span class="item-price">{{ kalem.brut_tutar | tutar }}</span>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="solid"></div>
+
+        <div class="row"><span>TOPLAM KDV</span><span>{{ toplam_kdv_tutari | tutar }} TL</span></div>
+        <div class="row bold" style="font-size: 14px;"><span>TOPLAM</span><span>{{ genel_toplam | tutar }} TL</span></div>
+
+        <div class="solid"></div>
+
+        <!-- KDV Tablosu (orana göre kırılım; fis_uret.py:kdv_gruplari_kur).
+             Kalem düzeyindeki kdv_tutari'ndan toplandığı için kdv_tutari
+             anomalisi burada da iz bırakır. -->
+        <div class="table-header">
+            <span class="kdv-oran">KDV Oranı</span>
+            <span class="kdv-tutar">KDV</span>
+            <span class="kdv-toplam">Toplam</span>
+        </div>
+        {% for grup in kdv_gruplari %}
+        <div class="row">
+            <span class="kdv-oran">%{{ grup.oran | int }}</span>
+            <span class="kdv-tutar">{{ grup.kdv | tutar }}</span>
+            <span class="kdv-toplam">{{ grup.toplam | tutar }} TL</span>
+        </div>
+        {% endfor %}
+
+        <div class="solid"></div>
+        <div class="address-space"></div>
+    </div>
+</body>
+</html>
