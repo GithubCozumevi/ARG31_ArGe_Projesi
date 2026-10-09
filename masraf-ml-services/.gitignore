@@ -1,0 +1,17 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+mlruns/
+data/
+ocr/
+cleaned/
+json3/
+layout_pilot_cikti/
+_yedek*/
+*.jpg
+*.jpeg
+*.png
